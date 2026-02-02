@@ -444,7 +444,7 @@ extension PaginatedTable {
         } else {
             // Show placeholder when loading or error
             let placeholderRows: [TableRow] = (0 ..< pageSize).map { _ in
-                data.columns.map { _ in TerminalText(stringLiteral: "") }
+                TableRow(data.columns.map { _ in TerminalText(stringLiteral: "") })
             }
             let pageData = TableData(columns: data.columns, rows: placeholderRows)
             let tableOutput = tableRenderer.render(

@@ -1049,7 +1049,7 @@ public final class Noora: Noorable {
                 alignment: .left
             )
         }
-        let tableData = TableData(columns: columns, rows: [])
+        let tableData = TableData(columns: columns, rows: [] as [TableRow])
 
         try await PaginatedTable(
             data: tableData,
@@ -1067,9 +1067,9 @@ public final class Noora: Noorable {
             loadPage: { page in
                 let stringRows = try await loadPage(page)
                 return stringRows.map { row in
-                    row.map { cell in
+                    TableRow(row.map { cell in
                         TerminalText(stringLiteral: cell)
-                    }
+                    })
                 }
             }
         ).run()
